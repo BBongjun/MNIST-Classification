@@ -7,18 +7,17 @@ class LeNet5(nn.Module):
         super(LeNet5,self).__init__()
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1),
-            nn.Tanh(),
-            nn.MaxPool2d(kernel_size=2),
+            nn.ReLU(), # different with original LeNet5(Tanh)
+            nn.MaxPool2d(kernel_size=2), # different with original LeNet5(Avgpool)
             nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1),
-            nn.Tanh(),
+            nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
-            nn.Conv2d(in_channels=16, out_channels=120, kernel_size=5, stride=1),
-            nn.Tanh()
+            nn.Conv2d(in_channels=16, out_channels=120, kernel_size=5, stride=1)
         )
 
         self.Classifier = nn.Sequential(
             nn.Linear(in_features=120, out_features=84),
-            nn.Tanh(),
+            nn.ReLU(),
             nn.Linear(in_features=84, out_features=n_classes)
         )
 
@@ -42,15 +41,14 @@ class CustomMLP(nn.Module):
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1),
             nn.BatchNorm2d(6), # Add batch normalization to improve gradient flow
-            nn.ReLU(), # Change activation function
+            nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1),
             nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Conv2d(in_channels=16, out_channels=120, kernel_size=5, stride=1),
-            nn.BatchNorm2d(120),
-            nn.ReLU()
+            nn.BatchNorm2d(120)
         )
 
         self.Classifier = nn.Sequential(

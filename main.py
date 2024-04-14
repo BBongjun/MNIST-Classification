@@ -28,6 +28,9 @@ def set_env(args):
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
 
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
 set_env(args)
 
 def train(model, epoch, trn_loader, device, criterion, optimizer):
@@ -35,6 +38,7 @@ def train(model, epoch, trn_loader, device, criterion, optimizer):
 
     Args:
         model: network
+        epoch : epoch
         trn_loader: torch.utils.data.DataLoader instance for training
         device: device for computing, cpu or gpu
         criterion: cost function
@@ -129,7 +133,7 @@ def loss_acc_plot(filename, train_acc_history, train_loss_history, test_acc_hist
     plt.subplot(1, 2, 2)  # 1행 2열의 두 번째 위치
     plt.plot(train_loss_history, 'b-', label='Train Loss', linewidth=2)  # 파란색 실선
     plt.plot(test_loss_history, 'r-', label='Test Loss', linewidth=2)  # 빨간색 실선
-    plt.title('Train & Test Loss Comparison')
+    plt.title('Train & Test Loss')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
@@ -144,8 +148,8 @@ def plot_test_comparison(filename, test_acc_history, test_loss_history, custom_t
 
     # Testing Accuracy Comparison
     plt.subplot(1, 2, 1)
-    plt.plot(test_acc_history, 'r-s', label='LeNet5 Test Accuracy', linewidth=2, markersize=6)  # cyan, diamond markers
-    plt.plot(custom_test_acc_history, 'b-o', label='CustomMLP Test Accuracy', linewidth=2, markersize=6)  # black, x markers
+    plt.plot(test_acc_history, 'r-', label='LeNet5 Test Accuracy', linewidth=2, markersize=6)  # cyan, diamond markers
+    plt.plot(custom_test_acc_history, 'b-', label='CustomMLP Test Accuracy', linewidth=2, markersize=6)  # black, x markers
     plt.title('Test Accuracy Comparison')
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy (%)')
@@ -154,8 +158,8 @@ def plot_test_comparison(filename, test_acc_history, test_loss_history, custom_t
 
     # Testing Loss Comparison
     plt.subplot(1, 2, 2)
-    plt.plot(test_loss_history, 'r-s', label='LeNet5 Test Loss', linewidth=2, markersize=6)  # yellow, vline markers
-    plt.plot(custom_test_loss_history, 'b-o', label='CustomMLP Test Loss', linewidth=2, markersize=6)  # orange, hexagon markers
+    plt.plot(test_loss_history, 'r-', label='LeNet5 Test Loss', linewidth=2, markersize=6)  # yellow, vline markers
+    plt.plot(custom_test_loss_history, 'b-', label='CustomMLP Test Loss', linewidth=2, markersize=6)  # orange, hexagon markers
     plt.title('Test Loss Comparison')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
@@ -204,6 +208,8 @@ def main():
     # Initialize LeNet5 Model
     LeNet = LeNet5(n_classes=10).cuda()
     Custom_model = CustomMLP(n_classes=10).cuda()
+    print(f'The number of LeNet5 parameters: {count_parameters(LeNet)}')
+    print(f'The number of LeNet5 parameters: {count_parameters(Custom_model)}')
 
     # Cost function & Optimizer
     criterion = torch.nn.CrossEntropyLoss()
@@ -240,7 +246,8 @@ def main():
 
     plot_test_comparison( './plot/test_performance_comparison.png', LeNet5_test_acc_history, LeNet5_test_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
 
-    print('='*20)
+    print('='*40)
+
     print(f'LeNet5 - Last epoch test acc: {LeNet5_test_acc_history[-1]}')
     print(f'Custom model - Last epoch test acc: {Custom_model_test_acc_history[-1]}')
 
