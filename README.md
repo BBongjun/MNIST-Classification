@@ -1,11 +1,16 @@
 # MNIST-Classification
 인공신경망과 딥러닝 강의 Toy Project입니다.
 
-## Experiment Setting
->- epoch : 30
->- batch_size : 64
+## Setups
+- numpy : 1.26.0
+- Python : 3.9.18
+- pytorch : 2.1.1
 
-## Command
+## Experiment Setting
+- epoch : 30
+- batch_size : 64
+
+## Run
 
 ```
 python main.py --batch_size 64 --num_epochs 30
@@ -28,3 +33,11 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
 - Custom model train & test acc/loss
 ![custom_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/Custom_model_train_test_plot.png) 
 
+## Performance
+
+| Model | Accuracy  |
+| ---------------: | -----: |
+| LeNet-5    | 98.89% |
+| CustomMLP W/O Augmentation  | 91.68% |
+| CustomMLP W/O Dropout  | 97.71% |
+| CustomMLP W/O BatchNorm  | 97.71% |

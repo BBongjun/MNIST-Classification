@@ -234,7 +234,7 @@ def main():
     Custom_model_train_loss_history, Custom_model_train_acc_history = [], []
     Custom_model_test_loss_history, Custom_model_test_acc_history = [], []
     for epoch in range(EPOCH):
-        trn_loss, trn_acc = train(Custom_model, epoch+1, train_loader, device, criterion, Custom_model_optimizer)
+        trn_loss, trn_acc = train(Custom_model, epoch+1, custom_train_loader, device, criterion, Custom_model_optimizer)
         test_loss, test_acc = test(Custom_model, test_loader, device, criterion)
         print("\n(Epoch %d) Train acc : %.2f%%, Train loss : %.3f | Test acc : %.2f%%, Test loss : %.3f \n" % (epoch+1, trn_acc, trn_loss, test_acc, test_loss))
         
