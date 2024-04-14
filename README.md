@@ -6,13 +6,13 @@
 >- epoch : 30
 >- batch_size : 64
 
-## 코드 실행 명령어
+## Command
 
 ```
 python main.py --batch_size 64 --num_epochs 30
 ```
 
-## Custom MLP와 LeNet-5와의 차이점
+## Difference between Custom MLP and LeNet-5
 LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델과 학습 과정에서 여러가지 Regularization 기법을 적용
 1. Augmentation
     - transforms.RandomRotation(degrees=0.3)
@@ -23,4 +23,11 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
 3. Batch Nomarlization
 
 ## Accuracy & Loss plot
+![LeNet5_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/LeNet5_train_test_plot.png)
+- LeNet5 train & test acc/loss
+    - 
+
+![custom_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/Custom_model_train_test_plot.png) 
+- Custom model train & test acc/loss
+    -
 
