@@ -113,41 +113,33 @@ def test(model, tst_loader, device, criterion):
 
 # Function to save loss & acc
 def loss_acc_plot(filename, train_acc_history, train_loss_history, test_acc_history, test_loss_history):
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(12, 6))  # 전체 그래프 크기 조정
 
-    plt.subplot(2, 2, 1)
-    plt.plot(train_acc_history, label='Train Accuracy')
-    plt.title('Train Accuracy plot')
+    # Accuracy Plot (Training and Test)
+    plt.subplot(1, 2, 1)  # 1행 2열의 첫 번째 위치
+    plt.plot(train_acc_history, 'b-', label='Train Accuracy', linewidth=2)  # 파란색 실선
+    plt.plot(test_acc_history, 'r-', label='Test Accuracy', linewidth=2)  # 빨간색 실선
+    plt.title('Train & Test Accuracy')
     plt.xlabel('Epochs')
-    plt.ylabel('Accuracy')
+    plt.ylabel('Accuracy (%)')
     plt.legend()
+    plt.grid(True)  # 그리드 추가
 
-    plt.subplot(2, 2, 2)
-    plt.plot(train_loss_history, label='Train Loss')
-    plt.title('Train Loss plot')
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.legend()
-
-    plt.subplot(2, 2, 3)
-    plt.plot(test_acc_history, label='Test Accuracy')
-    plt.title('Test Accuracy plot')
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy')
-    plt.legend()
-
-    plt.subplot(2, 2, 4)
-    plt.plot(test_loss_history, label='Test Loss')
-    plt.title('Test Loss plot')
+    # Loss Plot (Training and Test)
+    plt.subplot(1, 2, 2)  # 1행 2열의 두 번째 위치
+    plt.plot(train_loss_history, 'b-', label='Train Loss', linewidth=2)  # 파란색 실선
+    plt.plot(test_loss_history, 'r-', label='Test Loss', linewidth=2)  # 빨간색 실선
+    plt.title('Train & Test Loss Comparison')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
+    plt.grid(True)  # 그리드 추가
 
-    plt.tight_layout()
-    plt.savefig(filename)
-    plt.close()
+    plt.tight_layout()  # 레이아웃 조정
+    plt.savefig(filename)  # 파일로 저장
+    plt.close()  # 그림 닫기
 
-def plot_test_comparison(test_acc_history, test_loss_history, custom_test_acc_history, custom_test_loss_history, filename):
+def plot_test_comparison(filename, test_acc_history, test_loss_history, custom_test_acc_history, custom_test_loss_history):
     plt.figure(figsize=(12, 6))
 
     # Testing Accuracy Comparison
@@ -158,6 +150,7 @@ def plot_test_comparison(test_acc_history, test_loss_history, custom_test_acc_hi
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy (%)')
     plt.legend()
+    plt.grid(True)
 
     # Testing Loss Comparison
     plt.subplot(1, 2, 2)
@@ -167,6 +160,7 @@ def plot_test_comparison(test_acc_history, test_loss_history, custom_test_acc_hi
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
+    plt.grid(True)
 
     plt.tight_layout()
     plt.savefig(filename)
@@ -244,10 +238,12 @@ def main():
         Custom_model_test_acc_history.append(test_acc)
     loss_acc_plot('./plot/Custom_model_train_test_plot', Custom_model_train_acc_history, Custom_model_train_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
 
-    plot_test_comparison(LeNet5_test_acc_history, LeNet5_test_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history, './plot/test_performance_comparison.png')
+    plot_test_comparison( './plot/test_performance_comparison.png', LeNet5_test_acc_history, LeNet5_test_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
 
     print('='*20)
     print(f'LeNet5 - Last epoch test acc: {LeNet5_test_acc_history[-1]}')
     print(f'Custom model - Last epoch test acc: {Custom_model_test_acc_history[-1]}')
+
+
 if __name__ == '__main__':
     main()
