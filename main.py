@@ -205,7 +205,7 @@ def main():
                              batch_size=BATCH_SIZE*5,
                              shuffle=False)
     
-    # Initialize LeNet5 Model
+    # Initialize LeNet5 Model & CustomMLP
     LeNet = LeNet5(n_classes=10).cuda()
     Custom_model = CustomMLP(n_classes=10).cuda()
     print(f'The number of LeNet5 parameters: {count_parameters(LeNet)}')
@@ -216,7 +216,7 @@ def main():
     LeNet_optimizer = torch.optim.SGD(LeNet.parameters(), lr=0.01, momentum=0.9)
     Custom_model_optimizer = torch.optim.SGD(Custom_model.parameters(), lr=0.01, momentum=0.9)
 
-    # # LeNet5 train & test
+    # LeNet5 train & test
     print('============LeNet5 train & test Start============')
     LeNet5_train_loss_history, LeNet5_train_acc_history = [], []
     LeNet5_test_loss_history, LeNet5_test_acc_history = [], []
@@ -231,7 +231,7 @@ def main():
         LeNet5_test_acc_history.append(test_acc)
     loss_acc_plot('./plot/LeNet5_train_test_plot_tanh', LeNet5_train_acc_history, LeNet5_train_loss_history, LeNet5_test_acc_history, LeNet5_test_loss_history)
     
-    # Custom model train & test
+    # CustomMLP train & test
     print('============CustomMLP train & test Start============')
     Custom_model_train_loss_history, Custom_model_train_acc_history = [], []
     Custom_model_test_loss_history, Custom_model_test_acc_history = [], []
