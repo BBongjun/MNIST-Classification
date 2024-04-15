@@ -21,12 +21,12 @@ python main.py --batch_size 128 --num_epochs 50
 
 ## Difference between Custom MLP and LeNet-5
 LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델과 학습 과정에서 여러가지 Regularization 기법을 적용
-1. Augmentation
+1. **Augmentation**
     - transforms.RandomRotation(degrees=0.2)
     - transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.0))
-2. Dropout
+2. **Dropout**
     - dropout rate : 0.3
-3. Batch Nomarlization
+3. **Batch Nomarlization**
 
 ### Model parameter
 | Model | Accuracy  |
