@@ -23,8 +23,7 @@ python main.py --batch_size 128 --num_epochs 50
 LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하여 학습
 
 1. **Augmentation**
-    - transforms.RandomRotation(degrees=0.2)
-    - transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.0))
+    - transforms.RandomAffine(degrees=0.15, translate=(0.1, 0.1))
 2. **Dropout**
     - dropout rate : 0.3
 3. **Batch Nomarlization**
@@ -35,7 +34,6 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
 | LeNet5    | 61706 |
 | CustomMLP  | 62930 |
 | LeNet5_Reg  | 62158 |
-
 
 - LeNet5 parameter 계산
     - C1 : 6 x (5x5x1 + 1) = 156
