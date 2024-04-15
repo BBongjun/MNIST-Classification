@@ -8,12 +8,12 @@
 
 ## Experiment Setting
 - epoch : 50
-- batch_size : 64
+- batch_size : 128
 
 ## Run
 
 ```
-python main.py --batch_size 64 --num_epochs 50
+python main.py --batch_size 128 --num_epochs 50
 ```
 
 ## Difference between Custom MLP and LeNet-5
@@ -27,11 +27,18 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
     - careful weight initialization
     - 평균과 분산이 지속적으로 변하므로, weight 업데이트에 영향을 주어 
 
+### Model parameter
+| Model | Accuracy  |
+| ---------------: | -----: |
+| LeNet-5    | 61706 |
+| CustomMLP  | 62158 |
+- CustomMLP에서 Batch Nomarlization가 추가되어, 학습해야하는 파라미터 수가 조금 더 많음
+
 ## Performance
 | Model | Accuracy  |
 | ---------------: | -----: |
 | LeNet-5    | 99.03% |
-| CustomMLP  | 99.23% |
+| ****CustomMLP**  | **99.23%** |
 
 - 같은 에폭, 같은 배치사이즈에서 CustomMLP가 더 나은 일반화 성능을 보임
 
