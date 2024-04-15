@@ -25,6 +25,7 @@ def set_env(args):
     random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
+    np.random.seed(args.seed)
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
 

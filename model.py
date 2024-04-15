@@ -39,8 +39,8 @@ class CustomMLP(nn.Module):
     def __init__(self, n_classes):
         super(CustomMLP,self).__init__()
         self.MLP = nn.Sequential(
-            nn.Linear(1024, 50),
-            nn.Linear(50, 20),
+            nn.Linear(1024, 60),
+            nn.Linear(60, 20),
             nn.Linear(20, n_classes)
         )
 
@@ -50,17 +50,11 @@ class CustomMLP(nn.Module):
         return outputs
 
 class LeNet5_Reg(nn.Module):
-    """ Your custom MLP model
-
-        - Note that the number of model parameters should be about the same
-          with LeNet-5
-    """
-
     def __init__(self, n_classes):
         super(LeNet5_Reg,self).__init__()
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1),
-            nn.BatchNorm2d(6), # Add batch normalization to improve gradient flow
+            nn.BatchNorm2d(6), # Add batch normalization to improve gradient flow and prevent overfitting
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2),
             nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1),

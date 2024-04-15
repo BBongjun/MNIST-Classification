@@ -34,7 +34,7 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
 | ---------------: | -----: |
 | LeNet5    | 61706 |
 | LeNet5_Reg  | 62158 |
-| CustomMLP  |  |
+| CustomMLP  | 62930 |
 
 - LeNet5 parameter 계산
     - C1 : 6 x (5x5x1 + 1) = 156
@@ -44,17 +44,20 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
     - C5 : 120 x (5x5x16 + 1) = 48120
     - F6 : 84 x (120 + 1) = 10164
     - F7 : 10 x (84 + 1) = 850
-        - 156 + 2416 + 48120 + 10164 + 850 = 61706
+        - 총 파라미터 수 : 61706
 - CustomMLP parameter 계산
-    - 51250
+    - F1 : (1024 + 1) * 60 = 61500
+    - F2 : (60 + 1) * 20 = 1220
+    - F3 : (20 + 1) * 10 = 210
+        - 총 파라미터 수 : 62930
 - LeNet5_Reg에서 Batch Nomarlization가 추가되어, 학습해야하는 파라미터 수가 조금 더 많음
 
 ## Performance
 | Model | Accuracy  |
 | ---------------: | -----: |
 | LeNet5    | 99.03% |
-| LeNet5_Reg    | 99.23% |
 | CustomMLP  | % |
+| LeNet5_Reg    | 99.23% |
 
 - 직접 구현한 LeNet5은 알려져있는 예측 성능 약 99%와 유사함을 확인 가능
 
