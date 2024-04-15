@@ -27,8 +27,6 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
 2. Dropout
     - dropout rate : 0.3
 3. Batch Nomarlization
-    - careful weight initialization
-    - 평균과 분산이 지속적으로 변하므로, weight 업데이트에 영향을 주어 
 
 ### Model parameter
 | Model | Accuracy  |
