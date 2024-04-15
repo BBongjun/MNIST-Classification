@@ -33,8 +33,9 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
 | Model | Accuracy  |
 | ---------------: | -----: |
 | LeNet5    | 61706 |
-| LeNet5_Reg  | 62158 |
 | CustomMLP  | 62930 |
+| LeNet5_Reg  | 62158 |
+
 
 - LeNet5 parameter 계산
     - C1 : 6 x (5x5x1 + 1) = 156
@@ -84,12 +85,15 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
 - 하지만, Test loss는 초기 에폭 이후 증가하는 모습을 보임
 - LeNet5는 과적합되는 모습을 accuracy와 loss plot을 통해 확인 가능
 
+----------------------------------------
+
 #### [CustomMLP train & test acc/loss]
-- 
+- Train set에 대하여, LeNet5 보다 학습이 더딘 양상을 확인 가능
 
 #### [LeNet5 vs CustomMLP] 
-- 
+- Test set에 대하여, LeNet5이 CustomMLP보다 더 높은 성능을 보임
 
+-----------------------------------------
 #### [LeNet5_Reg train & test acc/loss] 
 - Train loss가 천천히 작아짐
 - Test loss도 계속해서 작아지는 모습을 보임
@@ -100,5 +104,6 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
 
 #### [Performance]
 - Augmentation, Dropout, Batch Normalization을 적용한 후, 더 나은 일반화 성능을 보임(LeNet5_Reg > LeNet5)
+
 ### [결론]
 - **Regularization 효과가 적절하게 적용되었음 확인 가능!**
