@@ -24,6 +24,7 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
 
 1. **Augmentation**
     - transforms.RandomAffine(degrees=0.15, translate=(0.1, 0.1))
+    - rotation + shift 효과
 2. **Dropout**
     - dropout rate : 0.3
 3. **Batch Nomarlization**
