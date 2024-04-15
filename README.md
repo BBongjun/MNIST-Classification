@@ -50,16 +50,17 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
     - F2 : (60 + 1) * 20 = 1220
     - F3 : (20 + 1) * 10 = 210
         - 총 파라미터 수 : 62930
-- LeNet5_Reg에서 Batch Nomarlization가 추가되어, 학습해야하는 파라미터 수가 조금 더 많음
+- LeNet5_Reg에서 Batch Nomarlization가 추가되어, 파라미터 수가 452(226 x 2)개 더 많음
 
 ## Performance
 | Model | Accuracy  |
 | ---------------: | -----: |
 | LeNet5    | 99.03% |
-| CustomMLP  | % |
-| LeNet5_Reg    | 99.23% |
+| CustomMLP  | 92.19% |
+| **LeNet5_Reg**    | **99.40%** |
 
 - 직접 구현한 LeNet5은 알려져있는 예측 성능 약 99%와 유사함을 확인 가능
+- Accuracy : CustomMLP < LeNet5 < LeNet5_Reg
 
 ## Accuracy & Loss plot
 - LeNet5 train & test acc/loss

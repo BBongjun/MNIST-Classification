@@ -299,7 +299,8 @@ def main():
     print('='*40)
 
     print(f'LeNet5 - Last epoch test acc: {LeNet5_test_acc_history[-1]}')
-    print(f'Custom model - Last epoch test acc: {LeNet_Reg_test_acc_history[-1]}')
+    print(f'Custom model - Last epoch test acc: {MLP_test_acc_history[-1]}')
+    print(f'LeNet5_Reg model - Last epoch test acc: {LeNet_Reg_test_acc_history[-1]}')
 
 
 if __name__ == '__main__':

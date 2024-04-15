@@ -50,6 +50,8 @@ class CustomMLP(nn.Module):
         return outputs
 
 class LeNet5_Reg(nn.Module):
+    """LeNet5 + regularization method
+    """
     def __init__(self, n_classes):
         super(LeNet5_Reg,self).__init__()
         self.feature_extractor = nn.Sequential(
