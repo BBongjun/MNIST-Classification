@@ -64,6 +64,7 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
 - Test loss도 계속해서 작아지는 모습을 보임
 - CustomMLP는 에폭이 지날수록, 더 안정적이고 더 나은 방향으로 학습되고 있음을 확인 가능
 #### [LeNet5 vs CustomMLP] 
-- CustomMLP가 안정적으로 빠르게 더 나은 일반화 성능으로 수렴하는 것을 확인 가능
-- Augmentation, Dropout, Batch Normalization을 적용한 후, 더 나은 일반화 성능을 보임을 performance 비교를 통해 알 수 있음(CustomMLP > LeNet5)
-    - Regularization 효과가 적절하게 적용되었음 확인 가능
+- CustomMLP가 안정적으로 빠르게 더 나은 일반화 성능을 보임을 확인 가능
+#### [Performance]
+- Augmentation, Dropout, Batch Normalization을 적용한 후, 더 나은 일반화 성능을 보임(CustomMLP > LeNet5)
+    - Regularization 효과가 적절하게 적용되었음 확인 가능!
