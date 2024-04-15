@@ -20,7 +20,7 @@ python main.py --batch_size 128 --num_epochs 50
 ```
 
 ## Difference between LeNet5 and LeNet5_Reg
-LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
+LeNet5_Reg 모델은 여러가지 Regularization 기법을 적용하여 학습
 
 1. **Augmentation**
     - transforms.RandomRotation(degrees=0.2)
