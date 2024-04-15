@@ -121,28 +121,28 @@ def loss_acc_plot(filename, train_acc_history, train_loss_history, test_acc_hist
     plt.figure(figsize=(12, 6))  # 전체 그래프 크기 조정
 
     # Accuracy Plot (Training and Test)
-    plt.subplot(1, 2, 1)  # 1행 2열의 첫 번째 위치
-    plt.plot(train_acc_history, 'b-', label='Train Accuracy', linewidth=2)  # 파란색 실선
-    plt.plot(test_acc_history, 'r-', label='Test Accuracy', linewidth=2)  # 빨간색 실선
+    plt.subplot(1, 2, 1) 
+    plt.plot(train_acc_history, 'b-', label='Train Accuracy', linewidth=2)  
+    plt.plot(test_acc_history, 'r-', label='Test Accuracy', linewidth=2)  
     plt.title('Train & Test Accuracy')
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy (%)')
     plt.legend()
-    plt.grid(True)  # 그리드 추가
+    plt.grid(True)
 
     # Loss Plot (Training and Test)
-    plt.subplot(1, 2, 2)  # 1행 2열의 두 번째 위치
-    plt.plot(train_loss_history, 'b-', label='Train Loss', linewidth=2)  # 파란색 실선
-    plt.plot(test_loss_history, 'r-', label='Test Loss', linewidth=2)  # 빨간색 실선
+    plt.subplot(1, 2, 2) 
+    plt.plot(train_loss_history, 'b-', label='Train Loss', linewidth=2) 
+    plt.plot(test_loss_history, 'r-', label='Test Loss', linewidth=2) 
     plt.title('Train & Test Loss')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
-    plt.grid(True)  # 그리드 추가
+    plt.grid(True)  
 
-    plt.tight_layout()  # 레이아웃 조정
-    plt.savefig(filename)  # 파일로 저장
-    plt.close()  # 그림 닫기
+    plt.tight_layout()  
+    plt.savefig(filename)  
+    plt.close()  
 
 def LeNet_Reg_plot_test_comparison(filename, test_acc_history, test_loss_history, custom_test_acc_history, custom_test_loss_history):
     plt.figure(figsize=(12, 6))

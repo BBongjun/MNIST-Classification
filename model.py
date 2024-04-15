@@ -51,6 +51,8 @@ class CustomMLP(nn.Module):
 
 class LeNet5_Reg(nn.Module):
     """LeNet5 + regularization method
+        - Dropout
+        - BatchNorm
     """
     def __init__(self, n_classes):
         super(LeNet5_Reg,self).__init__()
