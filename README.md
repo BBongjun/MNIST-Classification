@@ -67,12 +67,14 @@ LeNet5_Reg 모델의 학습에 여러가지 Regularization 기법을 적용
 - LeNet5 train & test acc/loss
 ![LeNet5_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/LeNet5_train_test_plot.png)
 
+-------------------------------------------------
 - CustomMLP train & test acc/loss
 ![custom_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/MLP_train_test_plot.png) 
 
 - LeNet5 vs CustomMLP 
 ![custom_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/MLP_test_performance_comparison.png)
 
+--------------------------------------------------
 - LeNet5_Reg train & test acc/loss
 ![LeNet5_Reg_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/LeNet5_Reg_train_test_plot.png)
 
