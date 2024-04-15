@@ -1,5 +1,5 @@
 import dataset
-from model import LeNet5, CustomMLP
+from model import LeNet5, LeNet5_Reg, CustomMLP
 
 import argparse
 import time
@@ -143,7 +143,34 @@ def loss_acc_plot(filename, train_acc_history, train_loss_history, test_acc_hist
     plt.savefig(filename)  # 파일로 저장
     plt.close()  # 그림 닫기
 
-def plot_test_comparison(filename, test_acc_history, test_loss_history, custom_test_acc_history, custom_test_loss_history):
+def LeNet_Reg_plot_test_comparison(filename, test_acc_history, test_loss_history, custom_test_acc_history, custom_test_loss_history):
+    plt.figure(figsize=(12, 6))
+
+    # Testing Accuracy Comparison
+    plt.subplot(1, 2, 1)
+    plt.plot(test_acc_history, 'r-', label='LeNet5 Test Accuracy', linewidth=2, markersize=6)  # cyan, diamond markers
+    plt.plot(custom_test_acc_history, 'b-', label='LeNet5_Reg Test Accuracy', linewidth=2, markersize=6)  # black, x markers
+    plt.title('Test Accuracy Comparison')
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy (%)')
+    plt.legend()
+    plt.grid(True)
+
+    # Testing Loss Comparison
+    plt.subplot(1, 2, 2)
+    plt.plot(test_loss_history, 'r-', label='LeNet5 Test Loss', linewidth=2, markersize=6)  # yellow, vline markers
+    plt.plot(custom_test_loss_history, 'b-', label='LeNet5_Reg Test Loss', linewidth=2, markersize=6)  # orange, hexagon markers
+    plt.title('Test Loss Comparison')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True)
+
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.show()
+
+def CustomMLP_plot_test_comparison(filename, test_acc_history, test_loss_history, custom_test_acc_history, custom_test_loss_history):
     plt.figure(figsize=(12, 6))
 
     # Testing Accuracy Comparison
@@ -205,16 +232,20 @@ def main():
                              batch_size=BATCH_SIZE*5,
                              shuffle=False)
     
-    # Initialize LeNet5 Model & CustomMLP
+    # Initialize LeNet5 Model & CustomMLP & LeNet5_Reg
     LeNet = LeNet5(n_classes=10).cuda()
-    Custom_model = CustomMLP(n_classes=10).cuda()
+    MLP = CustomMLP(n_classes=10).cuda()
+    LeNet_Reg = LeNet5_Reg(n_classes=10).cuda()
+
     print(f'The number of LeNet5 parameters: {count_parameters(LeNet)}')
-    print(f'The number of Custom_model parameters: {count_parameters(Custom_model)}')
+    print(f'The number of MLP parameters: {count_parameters(MLP)}')
+    print(f'The number of LeNet_Reg parameters: {count_parameters(LeNet_Reg)}')
 
     # Cost function & Optimizer
     criterion = torch.nn.CrossEntropyLoss()
     LeNet_optimizer = torch.optim.SGD(LeNet.parameters(), lr=0.01, momentum=0.9)
-    Custom_model_optimizer = torch.optim.SGD(Custom_model.parameters(), lr=0.01, momentum=0.9)
+    MLP_optimizer = torch.optim.SGD(MLP.parameters(), lr=0.01, momentum=0.9)
+    LeNet_Reg_optimizer = torch.optim.SGD(LeNet_Reg.parameters(), lr=0.01, momentum=0.9)
 
     # LeNet5 train & test
     print('============LeNet5 train & test Start============')
@@ -229,30 +260,45 @@ def main():
         LeNet5_train_acc_history.append(trn_acc)
         LeNet5_test_loss_history.append(test_loss)
         LeNet5_test_acc_history.append(test_acc)
-    loss_acc_plot('./plot/LeNet5_train_test_plot_tanh', LeNet5_train_acc_history, LeNet5_train_loss_history, LeNet5_test_acc_history, LeNet5_test_loss_history)
+    loss_acc_plot('./plot/LeNet5_train_test_plot', LeNet5_train_acc_history, LeNet5_train_loss_history, LeNet5_test_acc_history, LeNet5_test_loss_history)
     
     # CustomMLP train & test
-    print('============CustomMLP train & test Start============')
-    Custom_model_train_loss_history, Custom_model_train_acc_history = [], []
-    Custom_model_test_loss_history, Custom_model_test_acc_history = [], []
+    print('============MLP train & test Start============')
+    MLP_train_loss_history, MLP_train_acc_history = [], []
+    MLP_test_loss_history, MLP_test_acc_history = [], []
     for epoch in range(EPOCH):
-        trn_loss, trn_acc = train(Custom_model, epoch+1, custom_train_loader, device, criterion, Custom_model_optimizer)
-        test_loss, test_acc = test(Custom_model, test_loader, device, criterion)
+        trn_loss, trn_acc = train(MLP, epoch+1, train_loader, device, criterion, MLP_optimizer)
+        test_loss, test_acc = test(MLP, test_loader, device, criterion)
         print("\n(Epoch %d) Train acc : %.2f%%, Train loss : %.3f | Test acc : %.2f%%, Test loss : %.3f \n" % (epoch+1, trn_acc, trn_loss, test_acc, test_loss))
         
-        Custom_model_train_loss_history.append(trn_loss)
-        Custom_model_train_acc_history.append(trn_acc)
-        Custom_model_test_loss_history.append(test_loss)
-        Custom_model_test_acc_history.append(test_acc)
-    loss_acc_plot('./plot/Custom_model_train_test_plot_tanh', Custom_model_train_acc_history, Custom_model_train_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
+        MLP_train_loss_history.append(trn_loss)
+        MLP_train_acc_history.append(trn_acc)
+        MLP_test_loss_history.append(test_loss)
+        MLP_test_acc_history.append(test_acc)
+    loss_acc_plot('./plot/MLP_train_test_plot', MLP_train_acc_history, MLP_train_loss_history, MLP_test_acc_history, MLP_test_loss_history)
+    CustomMLP_plot_test_comparison('./plot/MLP_test_performance_comparison.png', LeNet5_test_acc_history, LeNet5_test_loss_history, MLP_test_acc_history, MLP_test_loss_history)
 
-    plot_test_comparison( './plot/test_performance_comparison_tanh.png', LeNet5_test_acc_history, LeNet5_test_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
+    # LeNet5_Reg train & test
+    print('============LeNet5_Reg train & test Start============')
+    LeNet_Reg_train_loss_history, LeNet_Reg_train_acc_history = [], []
+    LeNet_Reg_test_loss_history, LeNet_Reg_test_acc_history = [], []
+    for epoch in range(EPOCH):
+        trn_loss, trn_acc = train(LeNet_Reg, epoch+1, custom_train_loader, device, criterion, LeNet_Reg_optimizer)
+        test_loss, test_acc = test(LeNet_Reg, test_loader, device, criterion)
+        print("\n(Epoch %d) Train acc : %.2f%%, Train loss : %.3f | Test acc : %.2f%%, Test loss : %.3f \n" % (epoch+1, trn_acc, trn_loss, test_acc, test_loss))
+        
+        LeNet_Reg_train_loss_history.append(trn_loss)
+        LeNet_Reg_train_acc_history.append(trn_acc)
+        LeNet_Reg_test_loss_history.append(test_loss)
+        LeNet_Reg_test_acc_history.append(test_acc)
+    loss_acc_plot('./plot/LeNet5_Reg_train_test_plot', LeNet_Reg_train_acc_history, LeNet_Reg_train_loss_history, LeNet_Reg_test_acc_history, LeNet_Reg_test_loss_history)
+    LeNet_Reg_plot_test_comparison('./plot/LeNet5_Reg_test_performance_comparison.png', LeNet5_test_acc_history, LeNet5_test_loss_history, LeNet_Reg_test_acc_history, LeNet_Reg_test_loss_history)
 
 
     print('='*40)
 
     print(f'LeNet5 - Last epoch test acc: {LeNet5_test_acc_history[-1]}')
-    print(f'Custom model - Last epoch test acc: {Custom_model_test_acc_history[-1]}')
+    print(f'Custom model - Last epoch test acc: {LeNet_Reg_test_acc_history[-1]}')
 
 
 if __name__ == '__main__':

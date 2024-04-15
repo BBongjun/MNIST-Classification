@@ -38,6 +38,26 @@ class CustomMLP(nn.Module):
 
     def __init__(self, n_classes):
         super(CustomMLP,self).__init__()
+        self.MLP = nn.Sequential(
+            nn.Linear(1024, 50),
+            nn.Linear(50, 20),
+            nn.Linear(20, n_classes)
+        )
+
+    def forward(self, img):
+        x = torch.flatten(img, 1)
+        outputs = self.MLP(x)
+        return outputs
+
+class LeNet5_Reg(nn.Module):
+    """ Your custom MLP model
+
+        - Note that the number of model parameters should be about the same
+          with LeNet-5
+    """
+
+    def __init__(self, n_classes):
+        super(LeNet5_Reg,self).__init__()
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1),
             nn.BatchNorm2d(6), # Add batch normalization to improve gradient flow
@@ -52,7 +72,7 @@ class CustomMLP(nn.Module):
         )
 
         self.Classifier = nn.Sequential(
-            nn.Linear(in_features=120, out_features=84),
+            nn.Linear(120, 84),
             nn.BatchNorm1d(84),
             nn.ReLU(),
             nn.Dropout(0.3), # Add dropout layer to apply regularization effect 
