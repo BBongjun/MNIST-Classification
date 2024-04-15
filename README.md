@@ -59,6 +59,7 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
 | CustomMLP  | 92.19% |
 | **LeNet5_Reg**    | **99.40%** |
 
+- 각 모델의 Last epoch에서 Accuracy를 측정
 - 직접 구현한 LeNet5은 알려져있는 예측 성능 약 99%와 유사함을 확인 가능
 - Accuracy : CustomMLP < LeNet5 < LeNet5_Reg
 
