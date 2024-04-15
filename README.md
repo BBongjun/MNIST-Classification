@@ -55,7 +55,15 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
 ![custom_train_test_plot](https://github.com/BBongjun/MNIST-Classification/blob/main/plot/test_performance_comparison.png) 
 
 ## Performance 및 Acc/Loss plot 결과 해석
-1. (LeNet5 train & test acc/loss) LeNet5는 이른 에폭 이후에 과적합되는 모습을 accuracy와 loss plot을 통해 확인 가능
-2. (CustomMLP train & test acc/loss) 반대로, CustomMLP는 에폭이 지날수록, 더 안정적이고 더 나은 방향으로 학습되고 있음을 확인 가능
-3. (LeNet5 vs CustomMLP) Augmentation, Dropout, Batch Normalization을 적용한 후, 더 나은 일반화 성능을 보임을 performance 비교를 통해 알 수 있음(CustomMLP > LeNet5)
+#### [LeNet5 train & test acc/loss] 
+- Train loss는 학습이 진행될수록, 0에 수렴하게 됨
+- 하지만, Test loss는 초기 에폭 이후 증가하는 모습을 보임
+- LeNet5는 과적합되는 모습을 accuracy와 loss plot을 통해 확인 가능
+#### [CustomMLP train & test acc/loss] 
+- Train loss가 천천히 작아짐
+- Test loss도 계속해서 작아지는 모습을 보임
+- CustomMLP는 에폭이 지날수록, 더 안정적이고 더 나은 방향으로 학습되고 있음을 확인 가능
+#### [LeNet5 vs CustomMLP] 
+- CustomMLP가 안정적으로 빠르게 더 나은 일반화 성능으로 수렴하는 것을 확인 가능
+- Augmentation, Dropout, Batch Normalization을 적용한 후, 더 나은 일반화 성능을 보임을 performance 비교를 통해 알 수 있음(CustomMLP > LeNet5)
     - Regularization 효과가 적절하게 적용되었음 확인 가능
