@@ -33,11 +33,12 @@ class MNIST(Dataset):
         if augmentation:
             self.transform = transforms.Compose([
                 transforms.Resize((32, 32)),
+                transforms.RandomAffine(
+                degrees=0.15,
+                translate=(0.1, 0.1)
+                ),
                 transforms.ToTensor(),
-                transforms.Normalize((0.1307,), (0.3081,)),
-                transforms.RandomRotation(degrees=0.3),
-                transforms.RandomAffine(degrees=10, translate=(0.1, 0.1), scale=(0.9, 1.1)),
-                transforms.ColorJitter(brightness=0.2, contrast=0.2)
+                transforms.Normalize((0.1307,), (0.3081,))
             ])
         else:
             # Substract mean of 0.1307, dive by std 0.3081

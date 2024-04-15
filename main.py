@@ -209,14 +209,15 @@ def main():
     LeNet = LeNet5(n_classes=10).cuda()
     Custom_model = CustomMLP(n_classes=10).cuda()
     print(f'The number of LeNet5 parameters: {count_parameters(LeNet)}')
-    print(f'The number of LeNet5 parameters: {count_parameters(Custom_model)}')
+    print(f'The number of Custom_model parameters: {count_parameters(Custom_model)}')
 
     # Cost function & Optimizer
     criterion = torch.nn.CrossEntropyLoss()
     LeNet_optimizer = torch.optim.SGD(LeNet.parameters(), lr=0.01, momentum=0.9)
     Custom_model_optimizer = torch.optim.SGD(Custom_model.parameters(), lr=0.01, momentum=0.9)
 
-    # LeNet5 train & test
+    # # LeNet5 train & test
+    print('============LeNet5 train & test Start============')
     LeNet5_train_loss_history, LeNet5_train_acc_history = [], []
     LeNet5_test_loss_history, LeNet5_test_acc_history = [], []
     for epoch in range(EPOCH):
@@ -228,9 +229,10 @@ def main():
         LeNet5_train_acc_history.append(trn_acc)
         LeNet5_test_loss_history.append(test_loss)
         LeNet5_test_acc_history.append(test_acc)
-    loss_acc_plot('./plot/LeNet5_train_test_plot', LeNet5_train_acc_history, LeNet5_train_loss_history, LeNet5_test_acc_history, LeNet5_test_loss_history)
+    loss_acc_plot('./plot/LeNet5_train_test_plot_tanh', LeNet5_train_acc_history, LeNet5_train_loss_history, LeNet5_test_acc_history, LeNet5_test_loss_history)
     
     # Custom model train & test
+    print('============CustomMLP train & test Start============')
     Custom_model_train_loss_history, Custom_model_train_acc_history = [], []
     Custom_model_test_loss_history, Custom_model_test_acc_history = [], []
     for epoch in range(EPOCH):
@@ -242,9 +244,10 @@ def main():
         Custom_model_train_acc_history.append(trn_acc)
         Custom_model_test_loss_history.append(test_loss)
         Custom_model_test_acc_history.append(test_acc)
-    loss_acc_plot('./plot/Custom_model_train_test_plot', Custom_model_train_acc_history, Custom_model_train_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
+    loss_acc_plot('./plot/Custom_model_train_test_plot_tanh', Custom_model_train_acc_history, Custom_model_train_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
 
-    plot_test_comparison( './plot/test_performance_comparison.png', LeNet5_test_acc_history, LeNet5_test_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
+    plot_test_comparison( './plot/test_performance_comparison_tanh.png', LeNet5_test_acc_history, LeNet5_test_loss_history, Custom_model_test_acc_history, Custom_model_test_loss_history)
+
 
     print('='*40)
 
