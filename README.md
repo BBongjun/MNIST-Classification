@@ -10,7 +10,8 @@
 - epoch : 50
 - batch_size : 128
 - activation function : ReLU
-- optimizer : lr 0.01 SGD with momentum 0.9
+- optimizer : SGD with momentum 0.9
+- lr : 0.01 
 
 ## Run
 
