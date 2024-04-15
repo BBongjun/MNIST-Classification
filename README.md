@@ -68,4 +68,5 @@ LeNet-5보다 더 나은 일반화성능을 보이기 위해, Custom MLP 모델�
 - CustomMLP가 안정적으로 빠르게 더 나은 일반화 성능을 보임을 확인 가능
 #### [Performance]
 - Augmentation, Dropout, Batch Normalization을 적용한 후, 더 나은 일반화 성능을 보임(CustomMLP > LeNet5)
-    - Regularization 효과가 적절하게 적용되었음 확인 가능!
+### [결론]
+- Regularization 효과가 적절하게 적용되었음 확인 가능!
