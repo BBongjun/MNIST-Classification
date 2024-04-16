@@ -29,7 +29,7 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
     - dropout rate : 0.3
 3. **Batch Nomarlization**
 
-### Model parameter
+## Model parameter
 | Model | Accuracy  |
 | ---------------: | -----: |
 | LeNet5    | 61706 |
