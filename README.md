@@ -9,7 +9,7 @@
 ## Experiment Setting
 - epoch : 50
 - batch_size : 128
-- activation function : ReLU
+- activation function(LeNet5, LeNet5_Reg) : ReLU
 - optimizer : SGD with momentum 0.9
 - lr : 0.01 
 
