@@ -36,7 +36,7 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
 | CustomMLP  | 62930 |
 | LeNet5_Reg  | 62158 |
 
-- LeNet5 parameter 계산
+- **LeNet5 parameter 계산**
     - C1 : 6 x (5x5x1 + 1) = 156
     - S2 : 0
     - C3 : 16 x (5x5x6 + 1) = 2416
@@ -45,7 +45,7 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
     - F6 : 84 x (120 + 1) = 10164
     - F7 : 10 x (84 + 1) = 850
         - 총 파라미터 수 : 61706
-- CustomMLP parameter 계산
+- **CustomMLP parameter 계산**
     - F1 : (1024 + 1) * 60 = 61500
     - F2 : (60 + 1) * 20 = 1220
     - F3 : (20 + 1) * 10 = 210
