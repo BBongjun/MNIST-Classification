@@ -24,9 +24,9 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
 
 1. **Augmentation**
     - transforms.RandomAffine(degrees=0.15, translate=(0.1, 0.1))
-    - rotation + shift 효과
+    - rotation + shift 효과 </br>
 2. **Dropout**
-    - dropout rate : 0.3
+    - dropout rate : 0.3 </br>
 3. **Batch Nomarlization**
 
 ## Model parameter
@@ -44,12 +44,12 @@ LeNet5_Reg 모델은 LeNet5에 여러가지 Regularization 기법을 적용하�
     - C5 : 120 x (5x5x16 + 1) = 48120
     - F6 : 84 x (120 + 1) = 10164
     - F7 : 10 x (84 + 1) = 850
-        - 총 파라미터 수 : 61706
+        - 총 파라미터 수 : 61706 </br>
 - **CustomMLP parameter 계산**
     - F1 : (1024 + 1) * 60 = 61500
     - F2 : (60 + 1) * 20 = 1220
     - F3 : (20 + 1) * 10 = 210
-        - 총 파라미터 수 : 62930
+        - 총 파라미터 수 : 62930 </br>
 - LeNet5_Reg에서 Batch Nomarlization가 추가되어, 파라미터 수가 452(226 x 2)개 더 많음
 
 ## Performance
